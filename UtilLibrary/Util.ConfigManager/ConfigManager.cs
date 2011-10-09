@@ -5,17 +5,23 @@ namespace Util.ConfigManager
 {
     public interface IConfigManager
     {
+        string GetAppSetting(string propertyName);
         T GetAppSettingAs<T>(string propertyName) where T : struct;
     }
 
     public class ConfigManager: IConfigManager
     {
+        public string GetAppSetting(string propertyName)
+        {
+            return System.Configuration.ConfigurationManager.AppSettings.Get(propertyName);
+        }
+
         public T GetAppSettingAs<T>(string propertyName) where T : struct
         {
             if (propertyName == null)
                 throw new ArgumentNullException("propertyName");
 
-            var value = System.Configuration.ConfigurationManager.AppSettings.Get(propertyName);
+            var value = GetAppSetting(propertyName);
 
             T returnVal = default(T);
             if (String.IsNullOrEmpty(value))
