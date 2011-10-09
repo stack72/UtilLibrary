@@ -1,0 +1,4 @@
+Small libray of my common utilities - this will be added to as I migrate them to new projects. The library has
+
+Util.ConfigManager
+This is a wrapper around System.Configuration.ConfigurationManager so code that requires appSettings and connectionString values can be unit tested and decoupled
